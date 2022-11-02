@@ -1,22 +1,22 @@
-<div>
-    <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-row flex-wrap">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg w-{{ $tWidth }}">
-            <div class="p-6 bg-white border-b border-gray-200">
-                <canvas id="{{ $chartName }}" width="{{ $cWidth }}" height="{{ $cHeight }}"></canvas>
-            </div>
+<div class="{{ $className }}">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white border-b border-gray-200 {{ $chartSize }}">
+            <canvas id="{{ $chartName }}"></canvas>
         </div>
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script>
-        const ctx = document.getElementById("<?= $chartName ?>").getContext("2d");
-        const chart = new Chart(ctx, {
+        const <?php echo $chartName; ?> = document.getElementById("<?php echo $chartName; ?>").getContext("2d");
+        const <?php echo 'new' . $chartName; ?> = new Chart(<?php echo $chartName; ?>, {
             type: "<?= $type ?>",
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Indigo", "Slate", "Khaki", "Grey",
+                    "Black", "White"
+                ],
                 datasets: [{
                     label: "Daya Wind Turbine",
                     // Insert Data dummy
-                    data: [12, 19, 20, 50, 32, 30, 10],
+                    data: [12, 19, 20, 50, 32, 30, 10, 13, 25, 36, 57, 90],
                     // Cara mengganti border sesuai data yang masuk!
                     backgroundColor: [
                         "rgba(255, 99, 132, 0.2)",
@@ -38,6 +38,8 @@
                 }, ],
             },
             options: {
+                maintainAspectRatio: false,
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true,

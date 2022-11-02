@@ -7,9 +7,8 @@ use Livewire\Component;
 class Chart extends Component
 {
     public $type;
-    public $cWidth;
-    public $cHeight;
-    public $tWidth;
+    public $chartSize;
+    public $className;
     public $chartName;
     public function render()
     {
