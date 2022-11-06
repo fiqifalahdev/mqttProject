@@ -11,14 +11,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     {{-- Icons --}}
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-slate-200">
+    <div class="min-h-screen bg-slate-100">
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -31,7 +30,8 @@
 
         <!-- Page Content -->
         <main>
-            <div class="flex flex-row">
+            <div class="flex
+        flex-row">
                 @include('layouts.sidebar')
                 <div class="w-full">
                     @include('layouts.navigation')
@@ -41,6 +41,7 @@
         </main>
     </div>
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

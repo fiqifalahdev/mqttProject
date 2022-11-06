@@ -7,9 +7,8 @@ use Livewire\Component;
 class Card extends Component
 {
     public $unit;
-    public $fontSize;
-    public $fontWeight;
-    public $color;
+    public $className;
+    public $icon;
 
     public function render()
     {

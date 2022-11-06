@@ -6,7 +6,6 @@ use Livewire\Component;
 
 class Menu extends Component
 {
-    // private $typeList = ['Dashboard', 'Profile'];
     public $type;
     public $name;
 

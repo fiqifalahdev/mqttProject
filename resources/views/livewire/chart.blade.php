@@ -6,9 +6,9 @@
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script>
-        const <?php echo $chartName; ?> = document.getElementById("<?php echo $chartName; ?>").getContext("2d");
-        const <?php echo 'new' . $chartName; ?> = new Chart(<?php echo $chartName; ?>, {
-            type: "<?= $type ?>",
+        const @js($chartName) = document.getElementById(@js($chartName)).getContext("2d");
+        const @js('new' . $chartName) = new Chart(@js($chartName), {
+            type: @js($type),
             data: {
                 labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Indigo", "Slate", "Khaki", "Grey",
                     "Black", "White"
@@ -45,6 +45,7 @@
                         beginAtZero: true,
                     },
                 },
+                z
             },
         });
     </script>
