@@ -6,6 +6,7 @@ use App\Jobs\MqttJobs;
 use App\Models\Energy;
 use App\Models\Humidity;
 use App\Models\Intensity;
+use App\Models\Rainfall;
 use App\Models\WindPoint;
 use App\Models\WindSpeed;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +20,7 @@ class Dashboard extends Component
     public $intensity;
     public $windPoint;
     public $windSpeed;
+    public $rainfall;
 
     protected $listeners = ['change' => 'change'];
 
@@ -31,6 +33,13 @@ class Dashboard extends Component
         $this->intensity = Intensity::latest()->first();
         $this->windSpeed = WindSpeed::latest()->first();
         $this->windPoint = WindPoint::latest()->first();
+
+        $rainfall = Rainfall::latest()->limit(10)->get();
+        foreach ($rainfall as $rain) {
+            $data['label'][] = $rain->created_at->format('H:i:s');
+            $data['data'][] = $rain->message;
+        }
+        $this->rainfall = json_encode($data);
     }
 
     public function render()
@@ -48,6 +57,13 @@ class Dashboard extends Component
         $this->intensity = Intensity::latest()->first();
         $this->windSpeed = WindSpeed::latest()->first();
         $this->windPoint = WindPoint::latest()->first();
-        // $this->emit('changed', [$this->energy, $this->humidity, $this->intensity, $this->windPoint, $this->windSpeed]);
+
+        $rainfall = Rainfall::latest()->limit(10)->get();
+        foreach ($rainfall as $rain) {
+            $data['label'][] = $rain->created_at->format('H:i:s');
+            $data['data'][] = $rain->message;
+        }
+        $this->rainfall = json_encode($data);
+        $this->emit('changed', $this->rainfall);
     }
 }

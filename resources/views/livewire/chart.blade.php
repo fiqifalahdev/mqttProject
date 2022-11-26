@@ -6,22 +6,22 @@
     </div>
     @push('scripts')
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-        <script src="{{ asset('js/paho-mqtt.js') }}" type="text/javascript"></script>
         <script>
+            const chartData = @js($data);
+
+            // trigger Events from global events
             setInterval(() => {
                 Livewire.emit('change')
-            }, 500);
-
-            const data = JSON.parse(@js($rainfallData));
+            }, 1000);
             const domElem = document.getElementById("<?php echo $chartName; ?>").getContext("2d");
             const chart = new Chart(domElem, {
                 type: '<?php echo $type; ?>',
                 data: {
-                    labels: data.label,
+                    labels: chartData.label,
                     datasets: [{
                         label: "Curah Hujan",
                         // Insert Data dummy
-                        data: data.data,
+                        data: chartData.data,
                         // Cara mengganti border sesuai data yang masuk!
                         backgroundColor: [
                             "rgba(255, 159, 64, 0.2)",
@@ -43,16 +43,16 @@
                 },
             });
 
-            document.addEventListener('livewire:load', () => {
+            // take emit events from global events
+            Livewire.on('changed', event => {
+                const data = JSON.parse(event);
 
-                @this.on('changed', (event) => {
-                    const data = JSON.parse(event.data);
-                    chart.data.labels = data.label;
-                    chart.data.datasets.forEach((dataset) => {
-                        dataset.data = data.data;
-                    });
-                    chart.update();
+                // Update chart depends data from the server
+                chart.data.labels = data.label;
+                chart.data.datasets.forEach((dataset) => {
+                    dataset.data = data.data;
                 });
+                chart.update();
             });
         </script>
     @endpush

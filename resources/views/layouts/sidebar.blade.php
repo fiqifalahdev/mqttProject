@@ -5,9 +5,17 @@
         <h2 class=" text-center m-auto font-bold text-xl text-space ">{{ __('WTurbine') }}</h2>
     </div>
     <div class="menu">
-        <livewire:menu :type="'pager'" :name="'Dashboard'">
+        <a href="/dashboard">
+            <livewire:menu :type="'pager'" :name="'Dashboard'">
+        </a>
+        <a href="/solar">
             <livewire:menu :type="'solar-panel'" :name="'Solar Panel'">
-                <livewire:menu :type="'battery-full'" :name="'Battery'">
-                    <livewire:menu :type="'wind'" :name="'Wind'">
+        </a>
+        <a href="/batt">
+            <livewire:menu :type="'battery-full'" :name="'Battery'">
+        </a>
+        <a href="/wind">    
+            <livewire:menu :type="'wind'" :name="'Wind'">
+        </a>
     </div>
 </nav>

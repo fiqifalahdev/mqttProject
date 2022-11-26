@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\MqttJobs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/testing', function () {
+    dispatch(new MqttJobs('/sub/test'));
+    return view('testing');
+});
+
 require __DIR__ . '/auth.php';
