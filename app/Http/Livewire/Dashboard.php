@@ -2,56 +2,35 @@
 
 namespace App\Http\Livewire;
 
+use App\Jobs\MqttJobs;
 use App\Models\Energy;
 use App\Models\Humidity;
 use App\Models\Intensity;
 use App\Models\WindPoint;
 use App\Models\WindSpeed;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+
 
 class Dashboard extends Component
 {
-    public $object;
-    public $collection;
+    public $energy;
+    public $humidity;
+    public $intensity;
+    public $windPoint;
+    public $windSpeed;
+
     protected $listeners = ['change' => 'change'];
 
     public function mount()
     {
-        $energy = Energy::latest()->first();
-        $humidity = Humidity::latest()->first();
-        $intensity = Intensity::latest()->first();
-        $windSpeed = WindSpeed::latest()->first();
-        $windPoint = WindPoint::latest()->first();
+        dispatch(new MqttJobs());
 
-        $this->collection = collect([
-            [
-                'title' => 'Energy',
-                'topic' => '/sub/energy',
-                'message' => $energy->message
-            ],
-            [
-                'title' => 'Humidity',
-                'topic' => '/sub/humidity',
-                'message' => $humidity->message
-            ],
-            [
-                'title' => 'Wind Point',
-                'topic' => '/sub/windPoint',
-                'message' => $windPoint->message
-            ],
-            [
-                'title' => 'Wind Speed',
-                'topic' => '/sub/windSpeed',
-                'message' => $windSpeed->message
-            ],
-            [
-                'title' => 'Intensity',
-                'topic' => '/sub/intensity',
-                'message' => $intensity->message
-            ],
-        ]);
-
-        $this->object = json_encode($this->collection);
+        $this->energy = Energy::latest()->first();
+        $this->humidity = Humidity::latest()->first();
+        $this->intensity = Intensity::latest()->first();
+        $this->windSpeed = WindSpeed::latest()->first();
+        $this->windPoint = WindPoint::latest()->first();
     }
 
     public function render()
@@ -59,79 +38,16 @@ class Dashboard extends Component
         return view('livewire.dashboard');
     }
 
-    public function insert($topic, $message)
-    {
-        if ($topic == '/sub/energy') {
-            Energy::create([
-                'topic' => $topic,
-                'message' => $message,
-                'type' => 'energy'
-            ]);
-        } else if ($topic == '/sub/humidity') {
-            Humidity::create([
-                'topic' => $topic,
-                'message' => $message,
-                'type' => 'humidity'
-            ]);
-        } else if ($topic == '/sub/intensity') {
-            Intensity::create([
-                'topic' => $topic,
-                'message' => $message,
-                'type' => 'intensity'
-            ]);
-        } else if ($topic == '/sub/windPoint') {
-            WindPoint::create([
-                'topic' => $topic,
-                'message' => $message,
-                'type' => 'windPoint'
-            ]);
-        } else if ($topic == '/sub/windSpeed') {
-            WindSpeed::create([
-                'topic' => $topic,
-                'message' => $message,
-                'type' => 'windSpeed'
-            ]);
-        }
-
-        dd($topic, $message);
-    }
 
     public function change()
     {
-        $energy = Energy::latest()->first();
-        $humidity = Humidity::latest()->first();
-        $intensity = Intensity::latest()->first();
-        $windSpeed = WindSpeed::latest()->first();
-        $windPoint = WindPoint::latest()->first();
+        dispatch(new MqttJobs());
 
-        $this->collection = collect([
-            [
-                'title' => 'Energy',
-                'topic' => '/sub/energy',
-                'message' => $energy->message
-            ],
-            [
-                'title' => 'Humidity',
-                'topic' => '/sub/humidity',
-                'message' => $humidity->message
-            ],
-            [
-                'title' => 'Wind Point',
-                'topic' => '/sub/windPoint',
-                'message' => $windPoint->message
-            ],
-            [
-                'title' => 'Wind Speed',
-                'topic' => '/sub/windSpeed',
-                'message' => $windSpeed->message
-            ],
-            [
-                'title' => 'Intensity',
-                'topic' => '/sub/intensity',
-                'message' => $intensity->message
-            ],
-        ]);
-
-        $this->object = json_encode($this->collection);
+        $this->energy = Energy::latest()->first();
+        $this->humidity = Humidity::latest()->first();
+        $this->intensity = Intensity::latest()->first();
+        $this->windSpeed = WindSpeed::latest()->first();
+        $this->windPoint = WindPoint::latest()->first();
+        // $this->emit('changed', [$this->energy, $this->humidity, $this->intensity, $this->windPoint, $this->windSpeed]);
     }
 }
