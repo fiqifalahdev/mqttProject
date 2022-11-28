@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Energy>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PvVoltage>
  */
-class EnergyFactory extends Factory
+class PvVoltageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,9 @@ class EnergyFactory extends Factory
     public function definition()
     {
         return [
-            'topic' => '/subscribe',
+            'topic' => 'PfSains/pvVolt',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => fake()->slug(2)
+            'type' => 'pvVolt'
         ];
     }
 }

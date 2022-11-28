@@ -17,9 +17,9 @@ class WindSpeedFactory extends Factory
     public function definition()
     {
         return [
-            'topic' => '/subscribe',
+            'topic' => 'PfSains/windSpeed',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => fake()->slug(2)
+            'type' => 'windSpeed'
         ];
     }
 }

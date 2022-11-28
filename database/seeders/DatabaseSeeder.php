@@ -8,6 +8,10 @@ use App\Models\Broker;
 use App\Models\Energy;
 use App\Models\Humidity;
 use App\Models\Intensity;
+use App\Models\PvCurrent;
+use App\Models\PvEnergy;
+use App\Models\PvPower;
+use App\Models\PvVoltage;
 use App\Models\Rainfall;
 use App\Models\WindPoint;
 use App\Models\WindSpeed;
@@ -28,11 +32,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Energy::factory(20)->create();
-        Humidity::factory(20)->create();
-        Rainfall::factory(20)->create();
-        WindPoint::factory(20)->create();
-        WindSpeed::factory(20)->create();
-        Intensity::factory(20)->create();
+        // Humidity::factory(20)->create();
+        // Rainfall::factory(20)->create();
+        // WindPoint::factory(20)->create();
+        // WindSpeed::factory(20)->create();
+        // Intensity::factory(20)->create();
+        // PvPower::factory(20)->create();
+        // PvEnergy::factory(20)->create();
+        // PvCurrent::factory(20)->create();
+        // PvVoltage::factory(20)->create();
     }
 }

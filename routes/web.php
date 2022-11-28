@@ -15,16 +15,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/testing', function () {
-    dispatch(new MqttJobs('/sub/test'));
-    return view('testing');
-});
+Route::get('/solar', function () {
+    return view('solar');
+})->middleware(['auth', 'verified'])->name('solar');
+
+Route::get('/batt', function () {
+    return view('battery');
+})->middleware(['auth', 'verified'])->name('battery');
+
+Route::get('/wind', function () {
+    return view('wind');
+})->middleware(['auth', 'verified'])->name('wind');
 
 require __DIR__ . '/auth.php';

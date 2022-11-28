@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('energies', function (Blueprint $table) {
+        Schema::create('pv_voltages', function (Blueprint $table) {
             $table->id();
             $table->string('topic');
             $table->string('message');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('energies');
+        Schema::dropIfExists('pv_voltages');
     }
 };

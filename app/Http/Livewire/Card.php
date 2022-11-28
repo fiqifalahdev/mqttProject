@@ -11,12 +11,6 @@ class Card extends Component
     public $className;
     public $values;
 
-
-    public function mount($values)
-    {
-        $this->values = $values;
-    }
-
     public function render()
     {
         return view('livewire.card');

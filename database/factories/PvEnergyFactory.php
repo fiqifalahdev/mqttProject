@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Intensity>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PvEnergy>
  */
-class IntensityFactory extends Factory
+class PvEnergyFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,9 @@ class IntensityFactory extends Factory
     public function definition()
     {
         return [
-            'topic' => 'PfSains/intCahaya',
+            'topic' => 'PfSains/pvEnergy',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => 'lightIntensity'
+            'type' => 'pvEnergy'
         ];
     }
 }

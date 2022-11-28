@@ -1,15 +1,7 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="w-5/6 px-4 sm:px-6 lg:px-8 absolute top-0 right-0">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Search Bar -->
-                <div class="hidden space-x-8 sm:-my-px sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-slate-500">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-            </div>
+        <div class="flex justify-end h-16">
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">

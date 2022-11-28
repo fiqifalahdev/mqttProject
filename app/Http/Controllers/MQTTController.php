@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Energy;
 use App\Models\Humidity;
 use App\Models\Intensity;
 use App\Models\Rainfall;
@@ -16,7 +15,6 @@ class MQTTController
 {
     // topic list for subscribing
     protected $topicList = [
-        'PfSains/energy',
         'PfSains/intCahaya',
         'PfSains/windSpeed',
         'PfSains/windDir',
@@ -58,36 +56,30 @@ class MQTTController
     public function insertDB($topic, $message)
     {
         if ($topic == $this->topicList[0]) {
-            Energy::create([
-                'topic' => $topic,
-                'message' => $message,
-                'type' => 'energy'
-            ]);
-        } else if ($topic == $this->topicList[1]) {
             Intensity::create([
                 'topic' => $topic,
                 'message' => $message,
                 'type' => 'lightIntensity'
             ]);
-        } else if ($topic == $this->topicList[2]) {
+        } else if ($topic == $this->topicList[1]) {
             WindSpeed::create([
                 'topic' => $topic,
                 'message' => $message,
                 'type' => 'windSpeed'
             ]);
-        } else if ($topic == $this->topicList[3]) {
+        } else if ($topic == $this->topicList[2]) {
             WindPoint::create([
                 'topic' => $topic,
                 'message' => $message,
                 'type' => 'windDirection'
             ]);
-        } else if ($topic == $this->topicList[4]) {
+        } else if ($topic == $this->topicList[3]) {
             Humidity::create([
                 'topic' => $topic,
                 'message' => $message,
                 'type' => 'humidity'
             ]);
-        } else if ($topic == $this->topicList[5]) {
+        } else if ($topic == $this->topicList[4]) {
             Rainfall::create([
                 'topic' => $topic,
                 'message' => $message,

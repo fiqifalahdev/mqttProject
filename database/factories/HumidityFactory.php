@@ -17,9 +17,9 @@ class HumidityFactory extends Factory
     public function definition()
     {
         return [
-            'topic' => '/subscribe',
+            'topic' => 'PfSains/humidity',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => fake()->slug(2)
+            'type' => 'humidity'
         ];
     }
 }

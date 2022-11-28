@@ -15,7 +15,6 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
-    public $energy;
     public $humidity;
     public $intensity;
     public $windPoint;
@@ -28,7 +27,6 @@ class Dashboard extends Component
     {
         dispatch(new MqttJobs());
 
-        $this->energy = Energy::latest()->first();
         $this->humidity = Humidity::latest()->first();
         $this->intensity = Intensity::latest()->first();
         $this->windSpeed = WindSpeed::latest()->first();
@@ -52,7 +50,6 @@ class Dashboard extends Component
     {
         dispatch(new MqttJobs());
 
-        $this->energy = Energy::latest()->first();
         $this->humidity = Humidity::latest()->first();
         $this->intensity = Intensity::latest()->first();
         $this->windSpeed = WindSpeed::latest()->first();

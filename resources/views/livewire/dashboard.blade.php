@@ -9,13 +9,15 @@
             arah mata angin derajat trus nanti diconvert jadi arah 
             curah hujan bar chart
     --}}
-        <livewire:card :header="'Humidity'" :values="$humidity->message" :wire:key="$humidity->id" />
-        <livewire:card :header="'Intensity'" :values="$intensity->message" :wire:key="$intensity->id" />
-        <livewire:card :header="'Wind Direction'" :values="$windPoint->message" :wire:key="$windPoint->id" />
-        <livewire:card :header="'Wind Speed'" :values="$windSpeed->message" :wire:key="$windSpeed->id" />
+        {{-- :key tidak boleh berisi nilai yang sama dan harus unique --}}
+        <livewire:card :header="'Humidity'" :values="$humidity->message" :key="Str::random()" />
+        <livewire:card :header="'Intensity'" :values="$intensity->message" :key="Str::random()" />
+        <livewire:card :header="'Wind Direction'" :values="$windPoint->message" :key="Str::random()" />
+        <livewire:card :header="'Wind Speed'" :values="$windSpeed->message" :key="Str::random()" />
+        <livewire:chart :chartName="'curHujanChart'" :chartSize="'w-[80vw] h-[20vw]'" :type="'line'" :className="'mx-auto mt-10 w-[80vw]'"
+            :data="$rainfall" />
     </div>
 
-    <livewire:chart :chartName="'testingChart'" :chartSize="'w-[80vw]'" :type="'line'" :className="'mx-4'" :data="$rainfall" />
     @push('scripts')
         <script>
             setInterval(() => {
