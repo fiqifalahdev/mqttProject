@@ -10,10 +10,6 @@
             setInterval(() => {
                 Livewire.emit('change');
             }, 2000);
-
-            Livewire.on('changed', event => {
-                console.log(@js($pvVolt->message));
-            });
         </script>
     @endpush
 </div>
