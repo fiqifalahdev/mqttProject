@@ -8,9 +8,4 @@
             <h2 class="text-3xl font-semibold text-space ml-1">{{ $values }}</h2>
         </div>
     </div>
-    @push('scripts')
-        <script>
-            console.log(@js($values));
-        </script>
-    @endpush
 </div>

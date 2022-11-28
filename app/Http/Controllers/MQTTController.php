@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Humidity;
 use App\Models\Intensity;
+use App\Models\PvCurrent;
+use App\Models\PvEnergy;
+use App\Models\PvPower;
+use App\Models\PvVoltage;
 use App\Models\Rainfall;
 use App\Models\WindPoint;
 use App\Models\WindSpeed;
@@ -19,7 +23,11 @@ class MQTTController
         'PfSains/windSpeed',
         'PfSains/windDir',
         'PfSains/humidity',
-        'PfSains/curHujan'
+        'PfSains/curHujan',
+        'PfSains/pvVolt',
+        'PfSains/pvWatt',
+        'PfSains/pvCurrent',
+        'PfSains/pvEnergy',
     ];
 
     public function subscribe()
@@ -84,6 +92,30 @@ class MQTTController
                 'topic' => $topic,
                 'message' => $message,
                 'type' => 'curHujan'
+            ]);
+        } else if ($topic == $this->topicList[5]) {
+            PvVoltage::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvVolt'
+            ]);
+        } else if ($topic == $this->topicList[6]) {
+            PvPower::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvPower'
+            ]);
+        } else if ($topic == $this->topicList[7]) {
+            PvCurrent::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvCurrent'
+            ]);
+        } else if ($topic == $this->topicList[8]) {
+            PvEnergy::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvEnergy'
             ]);
         }
     }

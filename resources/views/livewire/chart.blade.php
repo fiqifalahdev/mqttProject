@@ -46,7 +46,6 @@
             // take emit events from global events
             Livewire.on('changed', event => {
                 const data = JSON.parse(event);
-
                 // Update chart depends data from the server
                 chart.data.labels = data.label;
                 chart.data.datasets.forEach((dataset) => {
