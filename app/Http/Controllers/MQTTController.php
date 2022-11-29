@@ -28,6 +28,14 @@ class MQTTController
         'PfSains/pvWatt',
         'PfSains/pvCurrent',
         'PfSains/pvEnergy',
+        'PfSains/battVolt',
+        'PfSains/battWatt',
+        'PfSains/battCurrent',
+        'PfSains/battEnergy',
+        'PfSains/windVolt',
+        'PfSains/windWatt',
+        'PfSains/windCurrent',
+        'PfSains/windEnergy'
     ];
 
     public function subscribe()
@@ -110,6 +118,30 @@ class MQTTController
                 'topic' => $topic,
                 'message' => $message,
                 'type' => 'pvCurrent'
+            ]);
+        } else if ($topic == $this->topicList[8]) {
+            PvEnergy::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvEnergy'
+            ]);
+        } else if ($topic == $this->topicList[8]) {
+            PvEnergy::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvEnergy'
+            ]);
+        } else if ($topic == $this->topicList[8]) {
+            PvEnergy::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvEnergy'
+            ]);
+        } else if ($topic == $this->topicList[8]) {
+            PvEnergy::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'pvEnergy'
             ]);
         } else if ($topic == $this->topicList[8]) {
             PvEnergy::create([
