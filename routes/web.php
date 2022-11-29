@@ -27,11 +27,11 @@ Route::get('/solar', function () {
 })->middleware(['auth', 'verified'])->name('solar');
 
 Route::get('/batt', function () {
-    return view('battery');
+    return view('batteries');
 })->middleware(['auth', 'verified'])->name('battery');
 
 Route::get('/wind', function () {
-    return view('wind');
+    return view('winds');
 })->middleware(['auth', 'verified'])->name('wind');
 
 require __DIR__ . '/auth.php';

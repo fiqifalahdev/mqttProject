@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BatteryCurrent;
+use App\Models\BatteryEnergy;
+use App\Models\BatteryVolt;
+use App\Models\BatteryWatt;
 use App\Models\Humidity;
 use App\Models\Intensity;
 use App\Models\PvCurrent;
@@ -9,8 +13,13 @@ use App\Models\PvEnergy;
 use App\Models\PvPower;
 use App\Models\PvVoltage;
 use App\Models\Rainfall;
+use App\Models\WindCurrent;
+use App\Models\WindEnergy;
 use App\Models\WindPoint;
 use App\Models\WindSpeed;
+use App\Models\WindVolt;
+use App\Models\WindWatt;
+
 use PhpMqtt\Client\Exceptions\MqttClientException;
 use PhpMqtt\Client\Facades\MQTT;
 use PhpMqtt\Client\MqttClient;
@@ -125,29 +134,53 @@ class MQTTController
                 'message' => $message,
                 'type' => 'pvEnergy'
             ]);
-        } else if ($topic == $this->topicList[8]) {
-            PvEnergy::create([
+        } else if ($topic == $this->topicList[9]) {
+            BatteryVolt::create([
                 'topic' => $topic,
                 'message' => $message,
-                'type' => 'pvEnergy'
+                'type' => 'battVolt'
             ]);
-        } else if ($topic == $this->topicList[8]) {
-            PvEnergy::create([
+        } else if ($topic == $this->topicList[10]) {
+            BatteryWatt::create([
                 'topic' => $topic,
                 'message' => $message,
-                'type' => 'pvEnergy'
+                'type' => 'battWatt'
             ]);
-        } else if ($topic == $this->topicList[8]) {
-            PvEnergy::create([
+        } else if ($topic == $this->topicList[11]) {
+            BatteryCurrent::create([
                 'topic' => $topic,
                 'message' => $message,
-                'type' => 'pvEnergy'
+                'type' => 'battCurrent'
             ]);
-        } else if ($topic == $this->topicList[8]) {
-            PvEnergy::create([
+        } else if ($topic == $this->topicList[12]) {
+            BatteryEnergy::create([
                 'topic' => $topic,
                 'message' => $message,
-                'type' => 'pvEnergy'
+                'type' => 'battEnergy'
+            ]);
+        } else if ($topic == $this->topicList[13]) {
+            WindVolt::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'windVolt'
+            ]);
+        } else if ($topic == $this->topicList[14]) {
+            WindWatt::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'windWatt'
+            ]);
+        } else if ($topic == $this->topicList[15]) {
+            WindCurrent::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'windCurrent'
+            ]);
+        } else if ($topic == $this->topicList[16]) {
+            WindEnergy::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'windEnergy'
             ]);
         }
     }
