@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('wind_watts', function (Blueprint $table) {
             $table->id();
+            $table->string('topic');
+            $table->string('message');
+            $table->string('type');
             $table->timestamps();
         });
     }

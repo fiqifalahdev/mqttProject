@@ -17,7 +17,9 @@ class BatteryCurrentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'topic' => 'PfSains/battCurrent',
+            'message' => fake()->randomFloat(2, 1, 100),
+            'type' => 'battCurrent'
         ];
     }
 }

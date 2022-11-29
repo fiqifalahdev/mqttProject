@@ -17,7 +17,9 @@ class WindEnergyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'topic' => 'PfSains/windEnergy',
+            'message' => fake()->randomFloat(2, 1, 100),
+            'type' => 'windEnergy'
         ];
     }
 }

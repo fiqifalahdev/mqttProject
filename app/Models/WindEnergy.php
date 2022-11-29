@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class WindEnergy extends Model
 {
     use HasFactory;
+    protected $fillable = ['topic', 'message', 'type'];
 }

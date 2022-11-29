@@ -17,7 +17,9 @@ class WindCurrentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'topic' => 'PfSains/windCurrent',
+            'message' => fake()->randomFloat(2, 1, 100),
+            'type' => 'windCurrent'
         ];
     }
 }

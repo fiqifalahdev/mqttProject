@@ -17,7 +17,9 @@ class WindWattFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'topic' => 'PfSains/windWatt',
+            'message' => fake()->randomFloat(2, 1, 100),
+            'type' => 'windWatt'
         ];
     }
 }

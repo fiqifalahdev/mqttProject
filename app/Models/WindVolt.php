@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class WindVolt extends Model
 {
     use HasFactory;
+    protected $fillable = ['topic', 'message', 'type'];
 }

@@ -17,7 +17,9 @@ class BatteryEnergyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'topic' => 'PfSains/battEnergy',
+            'message' => fake()->randomFloat(2, 1, 100),
+            'type' => 'battEnergy'
         ];
     }
 }

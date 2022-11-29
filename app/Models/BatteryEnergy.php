@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class BatteryEnergy extends Model
 {
     use HasFactory;
+    protected $fillable = ['topic', 'message', 'type'];
 }
