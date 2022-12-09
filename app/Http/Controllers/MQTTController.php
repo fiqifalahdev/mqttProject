@@ -35,15 +35,15 @@ class MQTTController
         'PfSains/curHujan',
         'PfSains/pvVolt',
         'PfSains/pvWatt',
-        'PfSains/pvCurrent',
+        'PfSains/pvCurr',
         'PfSains/pvEnergy',
         'PfSains/battVolt',
         'PfSains/battWatt',
-        'PfSains/battCurrent',
+        'PfSains/battCurr',
         'PfSains/battEnergy',
         'PfSains/windVolt',
         'PfSains/windWatt',
-        'PfSains/windCurrent',
+        'PfSains/windCurr',
         'PfSains/windEnergy'
     ];
 
@@ -57,6 +57,7 @@ class MQTTController
             for ($i = 0; $i < count($this->topicList); $i++) {
                 $client->subscribe($this->topicList[$i], function (string $topic, string $message) {
                     echo $topic;
+                    echo " ";
                     echo $message;
                     // if any topic and message coming insert to database
                     $this->insertDB($topic, $message);

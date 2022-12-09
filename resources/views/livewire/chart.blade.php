@@ -19,7 +19,7 @@
                 data: {
                     labels: chartData.label,
                     datasets: [{
-                        label: "Curah Hujan",
+                        label: @js($chartName),
                         // Insert Data dummy
                         data: chartData.data,
                         // Cara mengganti border sesuai data yang masuk!
@@ -44,7 +44,7 @@
             });
 
             // take emit events from global events
-            Livewire.on('changed', event => {
+            Livewire.on('changedChart', event => {
                 const data = JSON.parse(event);
                 // Update chart depends data from the server
                 chart.data.labels = data.label;
