@@ -23,7 +23,7 @@ class Battery extends Component
 
         $this->battVolt = BatteryVolt::latest()->first();
         $this->battEnergy = BatteryEnergy::latest()->first();
-        // $this->battPower = BatteryWatt::latest()->first();
+        $this->battPower = BatteryWatt::latest()->first();
         // $this->battCurrent = BatteryCurrent::latest()->limit(10)->get();
         // foreach ($this->battCurrent as $value) {
         //     $data['label'][] = $value->created_at->format("H:i:s");
@@ -44,7 +44,7 @@ class Battery extends Component
 
         $this->battVolt = BatteryVolt::latest()->first();
         $this->battEnergy = BatteryEnergy::latest()->first();
-        // $this->battPower = BatteryWatt::latest()->first();
+        $this->battPower = BatteryWatt::latest()->first();
         // $this->battCurrent = BatteryCurrent::latest()->limit(10)->get();
         // foreach ($this->battCurrent as $value) {
         //     $data['label'][] = $value->created_at->format("H:i:s");
@@ -52,6 +52,8 @@ class Battery extends Component
         // }
         // $this->battCurrent = json_encode($data);
         // $this->emit('changedChart', $this->battCurrent);
-        $this->emit('changedGauge', $this->battVolt);
+        $this->emit('changedVolt', $this->battVolt);
+        $this->emit('changedEnergy', $this->battEnergy);
+        $this->emit('changedPower', $this->battPower);
     }
 }

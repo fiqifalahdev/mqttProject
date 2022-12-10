@@ -10,6 +10,7 @@ class Gauge extends Component
     public $gaugeSize;
     public $className;
     public $gaugeName;
+    public $fetchData;
     public $data;
 
     public function mount($data)
