@@ -24,13 +24,7 @@ class Wind extends Component
         $this->windVolt = WindVolt::latest()->first();
         $this->windEnergy = WindEnergy::latest()->first();
         $this->windPower = WindWatt::latest()->first();
-        $this->windCurrent = WindCurrent::latest()->limit(10)->get();
-        foreach ($this->windCurrent as $value) {
-            $data['label'][] = $value->created_at->format("H:i:s");
-            $data['data'][] = $value->message;
-        }
-
-        $this->windCurrent = json_encode($data);
+        $this->windCurrent = WindCurrent::latest()->first();
     }
 
     public function render()
@@ -45,13 +39,12 @@ class Wind extends Component
         $this->windVolt = WindVolt::latest()->first();
         $this->windEnergy = WindEnergy::latest()->first();
         $this->windPower = WindWatt::latest()->first();
-        $this->windCurrent = WindCurrent::latest()->limit(10)->get();
-        foreach ($this->windCurrent as $value) {
-            $data['label'][] = $value->created_at->format("H:i:s");
-            $data['data'][] = $value->message;
-        }
+        $this->windCurrent = WindCurrent::latest()->first();
 
-        $this->windCurrent = json_encode($data);
-        $this->emit('changed', $this->windCurrent);
+        // emit to frontend
+        $this->emit('changedWindVolt', $this->windVolt);
+        $this->emit('changedWindEnergy', $this->windEnergy);
+        $this->emit('changedWindCurr', $this->windCurrent);
+        $this->emit('changedWindPower', $this->windPower);
     }
 }

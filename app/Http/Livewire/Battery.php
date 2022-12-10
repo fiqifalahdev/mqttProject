@@ -24,13 +24,7 @@ class Battery extends Component
         $this->battVolt = BatteryVolt::latest()->first();
         $this->battEnergy = BatteryEnergy::latest()->first();
         $this->battPower = BatteryWatt::latest()->first();
-        // $this->battCurrent = BatteryCurrent::latest()->limit(10)->get();
-        // foreach ($this->battCurrent as $value) {
-        //     $data['label'][] = $value->created_at->format("H:i:s");
-        //     $data['data'][] = $value->message;
-        // }
-
-        // $this->battCurrent = json_encode($data);
+        $this->battCurrent = BatteryCurrent::latest()->first();
     }
 
     public function render()
@@ -45,13 +39,9 @@ class Battery extends Component
         $this->battVolt = BatteryVolt::latest()->first();
         $this->battEnergy = BatteryEnergy::latest()->first();
         $this->battPower = BatteryWatt::latest()->first();
-        // $this->battCurrent = BatteryCurrent::latest()->limit(10)->get();
-        // foreach ($this->battCurrent as $value) {
-        //     $data['label'][] = $value->created_at->format("H:i:s");
-        //     $data['data'][] = $value->message;
-        // }
-        // $this->battCurrent = json_encode($data);
-        // $this->emit('changedChart', $this->battCurrent);
+        $this->battCurrent = BatteryCurrent::latest()->first();
+
+        $this->emit('changedCurrent', $this->battCurrent);
         $this->emit('changedVolt', $this->battVolt);
         $this->emit('changedEnergy', $this->battEnergy);
         $this->emit('changedPower', $this->battPower);

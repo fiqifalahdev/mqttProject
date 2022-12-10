@@ -31,13 +31,7 @@ class Dashboard extends Component
         $this->intensity = Intensity::latest()->first();
         $this->windSpeed = WindSpeed::latest()->first();
         $this->windPoint = WindPoint::latest()->first();
-
-        $rainfall = Rainfall::latest()->limit(10)->get();
-        foreach ($rainfall as $rain) {
-            $data['label'][] = $rain->created_at->format('H:i:s');
-            $data['data'][] = $rain->message;
-        }
-        $this->rainfall = json_encode($data);
+        $this->rainfall = Rainfall::latest()->first();
     }
 
     public function render()
@@ -54,13 +48,12 @@ class Dashboard extends Component
         $this->intensity = Intensity::latest()->first();
         $this->windSpeed = WindSpeed::latest()->first();
         $this->windPoint = WindPoint::latest()->first();
+        $this->rainfall = Rainfall::latest()->first();
 
-        $rainfall = Rainfall::latest()->limit(10)->get();
-        foreach ($rainfall as $rain) {
-            $data['label'][] = $rain->created_at->format('H:i:s');
-            $data['data'][] = $rain->message;
-        }
-        $this->rainfall = json_encode($data);
-        $this->emit('changed', $this->rainfall);
+        // Emit event 
+        $this->emit('windSpeed', $this->windSpeed);
+        $this->emit('humidity', $this->humidity);
+        $this->emit('intensity', $this->intensity);
+        $this->emit('rainfall', $this->rainfall);
     }
 }

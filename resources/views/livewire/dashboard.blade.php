@@ -9,13 +9,13 @@
             arah mata angin derajat trus nanti diconvert jadi arah 
             curah hujan bar chart
     --}}
-        {{-- :key tidak boleh berisi nilai yang sama dan harus unique --}}
-        <livewire:card :header="'Humidity'" :values="$humidity->message" :key="Str::random()" />
-        <livewire:card :header="'Intensity'" :values="$intensity->message" :key="Str::random()" />
+        <livewire:gauge :gaugeName="'windSpeed'" :data="$windSpeed->message" :fetchData="'windSpeed'" />
+        <livewire:gauge :gaugeName="'humidity'" :data="$humidity->message" :fetchData="'humidity'" />
+        <livewire:gauge :gaugeName="'intensity'" :data="$intensity->message" :fetchData="'intensity'" />
+        <livewire:gauge :gaugeName="'rainfall'" :data="$rainfall->message" :fetchData="'rainfall'" />
         <livewire:card :header="'Wind Direction'" :values="$windPoint->message" :key="Str::random()" />
-        <livewire:card :header="'Wind Speed'" :values="$windSpeed->message" :key="Str::random()" />
-        <livewire:chart :chartName="'curHujanChart'" :chartSize="'w-[80vw] h-[20vw]'" :type="'line'" :className="'mx-auto mt-10 w-[80vw]'"
-            :data="$rainfall" />
+        {{-- <livewire:chart :chartName="'curHujanChart'" :chartSize="'w-[80vw] h-[20vw]'" :type="'line'" :className="'mx-auto mt-10 w-[80vw]'"
+            :data="$rainfall" /> --}}
     </div>
 
     @push('scripts')

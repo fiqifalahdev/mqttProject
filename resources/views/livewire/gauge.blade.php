@@ -1,7 +1,7 @@
 <div class="{{ $className }}">
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="bg-white border-b border-gray-200 {{ $gaugeSize }}">
-            <div id="{{ $gaugeName }}" style="width:100%; height:400px;"></div>
+    <div class="bg-white overflow-hidden shadow-md sm:rounded-lg mb-4">
+        <div class="bg-white border-b border-gray-200">
+            <div id="{{ $gaugeName }}" class="w-[200] h-[100] sm:w-[400px] sm:h-[200px]"></div>
         </div>
     </div>
     @push('scripts')
@@ -82,8 +82,7 @@
                         data: [data],
                         dataLabels: {
                             format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:0.4">km/h</span>' +
+                                '<span style="font-size:14px">{y}</span><br/>' +
                                 '</div>'
                         },
                         tooltip: {

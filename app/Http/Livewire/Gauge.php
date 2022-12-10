@@ -6,8 +6,6 @@ use Livewire\Component;
 
 class Gauge extends Component
 {
-    public $type;
-    public $gaugeSize;
     public $className;
     public $gaugeName;
     public $fetchData;

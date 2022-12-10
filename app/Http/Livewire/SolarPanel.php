@@ -24,13 +24,14 @@ class SolarPanel extends Component
         $this->pvVolt = PvVoltage::latest()->first();
         $this->pvEnergy = PvEnergy::latest()->first();
         $this->pvPower = PvPower::latest()->first();
-        $this->pvCurrent = PvCurrent::latest()->limit(10)->get();
-        foreach ($this->pvCurrent as $value) {
-            $data['label'][] = $value->created_at->format("H:i:s");
-            $data['data'][] = $value->message;
-        }
+        $this->pvCurrent = PvCurrent::latest()->first();
+        // $this->pvCurrent = PvCurrent::latest()->limit(10)->get();
+        // foreach ($this->pvCurrent as $value) {
+        //     $data['label'][] = $value->created_at->format("H:i:s");
+        //     $data['data'][] = $value->message;
+        // }
 
-        $this->pvCurrent = json_encode($data);
+        // $this->pvCurrent = json_encode($data);
     }
 
     public function render()
@@ -45,13 +46,17 @@ class SolarPanel extends Component
         $this->pvVolt = PvVoltage::latest()->first();
         $this->pvEnergy = PvEnergy::latest()->first();
         $this->pvPower = PvPower::latest()->first();
-        $this->pvCurrent = PvCurrent::latest()->limit(10)->get();
-        foreach ($this->pvCurrent as $value) {
-            $data['label'][] = $value->created_at->format("H:i:s");
-            $data['data'][] = $value->message;
-        }
+        $this->pvCurrent = PvCurrent::latest()->first();
+        // $this->pvCurrent = PvCurrent::latest()->limit(10)->get();
+        // foreach ($this->pvCurrent as $value) {
+        //     $data['label'][] = $value->created_at->format("H:i:s");
+        //     $data['data'][] = $value->message;
+        // }
 
-        $this->pvCurrent = json_encode($data);
-        $this->emit('changed', $this->pvCurrent);
+        // $this->pvCurrent = json_encode($data);
+        $this->emit('changedPvVolt', $this->pvVolt);
+        $this->emit('changedPvPower', $this->pvPower);
+        $this->emit('changedPvEnergy', $this->pvEnergy);
+        $this->emit('changedPvCurrent', $this->pvCurrent);
     }
 }
