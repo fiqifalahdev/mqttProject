@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="title icon" href="./img/app-logo.png" type="image/x-icon">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -33,7 +34,7 @@
             <div class="flex
         flex-row">
                 @include('layouts.sidebar')
-                <div class="w-full">
+                <div class="w-full sm:w-5/6">
                     @include('layouts.navigation')
                     {{ $slot }}
                 </div>

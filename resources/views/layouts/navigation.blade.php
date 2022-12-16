@@ -1,7 +1,9 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="w-5/6 px-4 sm:px-6 lg:px-8 absolute top-0 right-0">
+    <div class="w-full md:w-5/6 px-4 sm:px-6 lg:px-8 absolute top-0 right-0 bg-white drop-shadow-md">
+
         <div class="flex justify-end h-16">
+            <h2 class="sm:hidden block text-center m-auto font-bold text-lg text-space ">{{ __('IIACS') }}</h2>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">

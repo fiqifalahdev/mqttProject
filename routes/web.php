@@ -28,7 +28,7 @@ Route::get('/solar', function () {
 
 Route::get('/batt', function () {
     return view('batteries');
-})->middleware(['auth', 'verified'])->name('battery');
+})->middleware(['auth', 'verified'])->name('batt');
 
 Route::get('/wind', function () {
     return view('winds');

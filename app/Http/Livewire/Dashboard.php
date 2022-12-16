@@ -2,16 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\GetDataController;
 use App\Jobs\MqttJobs;
-use App\Models\Energy;
 use App\Models\Humidity;
 use App\Models\Intensity;
 use App\Models\Rainfall;
 use App\Models\WindPoint;
 use App\Models\WindSpeed;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
-
 
 class Dashboard extends Component
 {
@@ -20,6 +18,7 @@ class Dashboard extends Component
     public $windPoint;
     public $windSpeed;
     public $rainfall;
+    public $chartData;
 
     protected $listeners = ['change' => 'change'];
 
@@ -32,6 +31,30 @@ class Dashboard extends Component
         $this->windSpeed = WindSpeed::latest()->first();
         $this->windPoint = WindPoint::latest()->first();
         $this->rainfall = Rainfall::latest()->first();
+
+        $humidity = new GetDataController(Humidity::class);
+        $intensity = new GetDataController(Intensity::class);
+        $windSpeed = new GetDataController(WindSpeed::class);
+        $rainfall = new GetDataController(Rainfall::class);
+
+        $this->chartData = [
+            [
+                'name' => 'Humidity',
+                'data' => $humidity->getDataYear()
+            ],
+            [
+                'name' => 'Intensity',
+                'data' => $intensity->getDataYear()
+            ],
+            [
+                'name' => 'WindSpeed',
+                'data' => $windSpeed->getDataYear()
+            ],
+            [
+                'name' => 'Rainfall',
+                'data' => $rainfall->getDataYear()
+            ],
+        ];
     }
 
     public function render()

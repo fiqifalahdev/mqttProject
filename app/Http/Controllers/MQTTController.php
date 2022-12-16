@@ -52,6 +52,9 @@ class MQTTController
         try {
             // create connection between client and broker
             $client = MQTT::connection();
+            if ($client->isConnected()) {
+                echo ' Mqtt Broker Connected';
+            }
 
             // subscribe from broker
             for ($i = 0; $i < count($this->topicList); $i++) {

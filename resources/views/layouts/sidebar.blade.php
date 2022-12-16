@@ -1,23 +1,22 @@
-<nav class="hidden md:block w-1/6 min-h-screen">
+<nav class="hidden md:block w-1/6 min-h-screen bg-white drop-shadow-md">
     <div class="header px-3 py-4 flex flex-row justify-between">
-        {{-- logo --}}
-        {{-- <x-application-logo class="block h-12 p-2 rounded-md fill-current text-white bg-space" /> --}}
-        <i
-            class="fa-solid fa-fan fa-xl flex justify-center items-center h-12 w-12 rounded-md fill-current text-white bg-space"></i>
-        <h2 class=" text-center m-auto font-bold text-xl text-space ">{{ __('WTurbine') }}</h2>
+        {{-- ganti icons --}}
+        <img src="./img/app-logo.png" alt="application-logo" class="w-11">
+        <h2 class=" text-center m-auto font-bold text-lg text-space ">{{ __('IIACS') }}</h2>
     </div>
     <div class="menu">
-        <a href="/dashboard">
-            <livewire:menu :type="'pager'" :name="'Dashboard'">
-        </a>
-        <a href="/solar">
-            <livewire:menu :type="'solar-panel'" :name="'Solar Panel'">
-        </a>
-        <a href="/batt">
-            <livewire:menu :type="'battery-full'" :name="'Battery'">
-        </a>
-        <a href="/wind">
+        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <livewire:menu :type="'book'" :name="'Dashboard'">
+        </x-nav-link>
+        <x-nav-link :href="route('solar')" :active="request()->routeIs('solar')">
+            <livewire:menu :type="'sun'" :name="'Solar Panel'">
+        </x-nav-link>
+        <x-nav-link :href="route('batt')" :active="request()->routeIs('batt')">
+            <livewire:menu :type="'battery'" :name="'Battery'">
+        </x-nav-link>
+        <x-nav-link :href="route('wind')" :active="request()->routeIs('wind')">
             <livewire:menu :type="'wind'" :name="'Wind'">
+        </x-nav-link>
         </a>
     </div>
 </nav>

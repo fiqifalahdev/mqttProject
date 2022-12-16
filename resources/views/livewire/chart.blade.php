@@ -1,58 +1,82 @@
 <div class="{{ $className }}">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200 {{ $chartSize }}">
-            <canvas id="{{ $chartName }}"></canvas>
+            <div id="{{ $chartName }}"></div>
         </div>
     </div>
     @push('scripts')
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
         <script>
             const chartData = @js($data);
+            console.log(chartData);
 
             // trigger Events from global events
             setInterval(() => {
                 Livewire.emit('change')
             }, 1000);
-            const domElem = document.getElementById("<?php echo $chartName; ?>").getContext("2d");
-            const chart = new Chart(domElem, {
-                type: '<?php echo $type; ?>',
-                data: {
-                    labels: chartData.label,
-                    datasets: [{
-                        label: @js($chartName),
-                        // Insert Data dummy
-                        data: chartData.data,
-                        // Cara mengganti border sesuai data yang masuk!
-                        backgroundColor: [
-                            "rgba(255, 159, 64, 0.2)",
-                        ],
-                        borderColor: [
-                            "rgba(255, 159, 64, 1)",
-                        ],
-                        borderWidth: 1,
-                    }, ],
+
+            Highcharts.chart(@js($chartName), {
+
+                chart: {
+                    type: 'spline'
                 },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
+
+                title: {
+                    text: @js($chartName)
+                },
+
+                // subtitle: {
+                //     text: 'Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>'
+                // },
+
+                yAxis: {
+                    title: {
+                        text: 'Values'
+                    }
+                },
+
+                xAxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                    ],
+                    accessibility: {
+                        description: 'Months of the year'
+                    }
+                },
+
+                // Data Live berupa Object dengan atribut name dan data.
+                // Jika data tahunan berarti data harus berisi 12 
+                // Jika Chart berisi data tahunan berarti diambil data max tiap bulan 
+                // Jika Chart berisi data bulanan berarti diambil data max tiap hari 
+                // Jika Chart berisi data harian berarti diambil data max tiap berapa jam 
+                series: @js($data),
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
                         },
-                    },
-                },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
             });
 
             // take emit events from global events
-            Livewire.on('changedChart', event => {
-                const data = JSON.parse(event);
-                // Update chart depends data from the server
-                chart.data.labels = data.label;
-                chart.data.datasets.forEach((dataset) => {
-                    dataset.data = data.data;
-                });
-                chart.update();
-            });
+            // Livewire.on('changedChart', event => {
+            //     const data = JSON.parse(event);
+            //     // Update chart depends data from the server 
+            //     chart.data.labels = data.label;
+            //     chart.data.datasets.forEach((dataset) => {
+            //         dataset.data = data.data;
+            //     });
+            //     chart.update();
+            // });
         </script>
     @endpush
 </div>

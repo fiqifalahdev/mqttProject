@@ -13,13 +13,13 @@
         <livewire:gauge :gaugeName="'humidity'" :data="$humidity->message" :fetchData="'humidity'" />
         <livewire:gauge :gaugeName="'intensity'" :data="$intensity->message" :fetchData="'intensity'" />
         <livewire:gauge :gaugeName="'rainfall'" :data="$rainfall->message" :fetchData="'rainfall'" />
-        <livewire:card :header="'Wind Direction'" :values="$windPoint->message" :key="Str::random()" />
-        {{-- <livewire:chart :chartName="'curHujanChart'" :chartSize="'w-[80vw] h-[20vw]'" :type="'line'" :className="'mx-auto mt-10 w-[80vw]'"
-            :data="$rainfall" /> --}}
+        {{-- <livewire:card :header="'Wind Direction'" :values="$windPoint->message" :key="Str::random()" /> --}}
+        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-[80vw]'" :data="$chartData" />
     </div>
 
     @push('scripts')
         <script>
+            // console.log(@js($chartData));
             setInterval(() => {
                 Livewire.emit('change');
             }, 2000);
