@@ -1,7 +1,7 @@
 <div class="{{ $className }}">
     <div class="bg-white overflow-hidden shadow-md sm:rounded-lg mb-4">
         <div class="bg-white border-b border-gray-200">
-            <div id="{{ $gaugeName }}" class="w-[200] h-[100] sm:w-[400px] sm:h-[200px]"></div>
+            <div id="{{ $gaugeName }}" class="w-full md:w-[500px] md:h-[200px]"></div>
         </div>
     </div>
     @push('scripts')
@@ -67,7 +67,7 @@
                 }, {
                     yAxis: {
                         min: 0,
-                        max: 50,
+                        max: 100,
                         title: {
                             text: name
                         }
@@ -109,7 +109,6 @@
 
                 Livewire.on(eventName, event => {
                     newData = parseFloat(event.message);
-                    console.log(newData);
                 });
                 // Bring life to the dials
 
