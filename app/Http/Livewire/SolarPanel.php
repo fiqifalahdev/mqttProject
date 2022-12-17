@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\GetDataController;
 use App\Jobs\MqttJobs;
 use App\Models\PvCurrent;
 use App\Models\PvEnergy;
@@ -15,6 +16,7 @@ class SolarPanel extends Component
     public $pvEnergy;
     public $pvPower;
     public $pvCurrent;
+    public $chartData;
     protected $listeners = ['change' => 'change'];
 
     public function mount()
@@ -25,13 +27,30 @@ class SolarPanel extends Component
         $this->pvEnergy = PvEnergy::latest()->first();
         $this->pvPower = PvPower::latest()->first();
         $this->pvCurrent = PvCurrent::latest()->first();
-        // $this->pvCurrent = PvCurrent::latest()->limit(10)->get();
-        // foreach ($this->pvCurrent as $value) {
-        //     $data['label'][] = $value->created_at->format("H:i:s");
-        //     $data['data'][] = $value->message;
-        // }
 
-        // $this->pvCurrent = json_encode($data);
+        $pvVolt = new GetDataController(PvVoltage::class);
+        $pvEnergy = new GetDataController(PvEnergy::class);
+        $pvPower = new GetDataController(PvPower::class);
+        $pvCurrent = new GetDataController(PvCurrent::class);
+
+        $this->chartData = [
+            [
+                'name' => 'Pv Volt',
+                'data' => $pvVolt->getDataYear()
+            ],
+            [
+                'name' => 'Pv Energy',
+                'data' => $pvEnergy->getDataYear()
+            ],
+            [
+                'name' => 'Pv Power',
+                'data' => $pvPower->getDataYear()
+            ],
+            [
+                'name' => 'Pv Current',
+                'data' => $pvCurrent->getDataYear()
+            ],
+        ];
     }
 
     public function render()

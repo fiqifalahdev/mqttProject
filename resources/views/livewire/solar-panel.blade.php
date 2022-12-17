@@ -5,7 +5,7 @@
         <livewire:gauge :gaugeName="'pvEnergy'" :data="$pvEnergy->message" :fetchData="'changedPvEnergy'" />
         <livewire:gauge :gaugeName="'pvCurrent'" :data="$pvCurrent->message" :fetchData="'changedPvCurrent'" />
 
-        {{-- <livewire:chart :chartName="'currentChart'" :chartSize="'w-[80vw] h-[20vw]'" :type="'line'" :className="'mx-auto mt-10 w-[80vw]'" :data="$pvCurrent" /> --}}
+        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-[80vw]'" :data="$chartData" />
     </div>
     @push('scripts')
         <script>

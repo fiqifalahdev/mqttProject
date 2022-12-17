@@ -19,7 +19,9 @@ class RainfallFactory extends Factory
         return [
             'topic' => 'PfSains/curHujan',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => 'curHujan'
+            'type' => 'curHujan',
+            'created_at' => fake()->dateTimeThisYear(),
+            'updated_at' => fake()->dateTimeThisYear()
         ];
     }
 }

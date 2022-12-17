@@ -19,7 +19,9 @@ class WindSpeedFactory extends Factory
         return [
             'topic' => 'PfSains/windSpeed',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => 'windSpeed'
+            'type' => 'windSpeed',
+            'created_at' => fake()->dateTimeThisYear(),
+            'updated_at' => fake()->dateTimeThisYear()
         ];
     }
 }

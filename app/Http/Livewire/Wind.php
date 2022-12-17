@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\GetDataController;
 use App\Jobs\MqttJobs;
 use App\Models\WindCurrent;
 use App\Models\WindEnergy;
@@ -25,6 +26,30 @@ class Wind extends Component
         $this->windEnergy = WindEnergy::latest()->first();
         $this->windPower = WindWatt::latest()->first();
         $this->windCurrent = WindCurrent::latest()->first();
+
+        $windVolt = new GetDataController(WindVolt::class);
+        $windEnergy = new GetDataController(WindEnergy::class);
+        $windPower = new GetDataController(WindWatt::class);
+        $windCurrent = new GetDataController(WindCurrent::class);
+
+        $this->chartData = [
+            [
+                'name' => 'Wind Volt',
+                'data' => $windVolt->getDataYear()
+            ],
+            [
+                'name' => 'Wind Energy',
+                'data' => $windEnergy->getDataYear()
+            ],
+            [
+                'name' => 'Wind Power',
+                'data' => $windPower->getDataYear()
+            ],
+            [
+                'name' => 'Wind Current',
+                'data' => $windCurrent->getDataYear()
+            ],
+        ];
     }
 
     public function render()

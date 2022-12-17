@@ -19,7 +19,9 @@ class WindPointFactory extends Factory
         return [
             'topic' => 'PfSains/windDir',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => 'windDirection'
+            'type' => 'windDirection',
+            'created_at' => fake()->dateTimeThisYear(),
+            'updated_at' => fake()->dateTimeThisYear()
         ];
     }
 }

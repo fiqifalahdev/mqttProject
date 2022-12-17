@@ -19,7 +19,9 @@ class BrokerFactory extends Factory
         return [
             'topic' => '/sub/test',
             'message' => fake()->randomFloat(99.99),
-            'type' => fake()->slug(2)
+            'type' => fake()->slug(2),
+            'created_at' => fake()->dateTimeThisYear(),
+            'updated_at' => fake()->dateTimeThisYear()
         ];
     }
 }

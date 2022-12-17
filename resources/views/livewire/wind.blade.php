@@ -4,7 +4,9 @@
         <livewire:gauge :gaugeName="'windPower'" :data="$windPower->message" :fetchData="'changedWindPower'" />
         <livewire:gauge :gaugeName="'windEnergy'" :data="$windEnergy->message" :fetchData="'changedWindEnergy'" />
         <livewire:gauge :gaugeName="'windCurrent'" :data="$windCurrent->message" :fetchData="'changedWindCurr'" />
-        {{-- <livewire:chart :chartName="'WindCurrent'" :chartSize="'w-[80vw] h-[20vw]'" :type="'line'" :className="'mx-auto mt-10 w-[80vw]'" :data="$windCurrent" /> --}}
+
+        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-[80vw]'" :data="$chartData" />
+
     </div>
     @push('scripts')
         <script>

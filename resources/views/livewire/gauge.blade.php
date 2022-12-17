@@ -93,6 +93,7 @@
                 }));
 
                 let newData = [];
+                // Bring life to the dials
                 setInterval(function() {
                     Livewire.emit('change');
                     let point,
@@ -110,9 +111,6 @@
                 Livewire.on(eventName, event => {
                     newData = parseFloat(event.message);
                 });
-                // Bring life to the dials
-
-
             }
 
             createChart(parseFloat(@js($data)), @js($gaugeName), @js($fetchData));

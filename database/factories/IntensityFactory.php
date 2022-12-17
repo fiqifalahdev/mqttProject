@@ -19,7 +19,9 @@ class IntensityFactory extends Factory
         return [
             'topic' => 'PfSains/intCahaya',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => 'lightIntensity'
+            'type' => 'lightIntensity',
+            'created_at' => fake()->dateTimeThisYear(),
+            'updated_at' => fake()->dateTimeThisYear()
         ];
     }
 }

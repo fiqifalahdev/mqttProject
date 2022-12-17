@@ -9,7 +9,6 @@ use App\Models\BatteryEnergy;
 use App\Models\BatteryVolt;
 use App\Models\BatteryWatt;
 use App\Models\Broker;
-use App\Models\Energy;
 use App\Models\Humidity;
 use App\Models\Intensity;
 use App\Models\PvCurrent;
@@ -60,5 +59,6 @@ class DatabaseSeeder extends Seeder
         WindWatt::factory(20)->create();
         WindEnergy::factory(20)->create();
         WindCurrent::factory(20)->create();
+        // Broker::factory(20)->create();
     }
 }

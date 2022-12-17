@@ -19,7 +19,9 @@ class HumidityFactory extends Factory
         return [
             'topic' => 'PfSains/humidity',
             'message' => fake()->randomFloat(2, 1, 100),
-            'type' => 'humidity'
+            'type' => 'humidity',
+            'created_at' => fake()->dateTimeThisYear(),
+            'updated_at' => fake()->dateTimeThisYear()
         ];
     }
 }

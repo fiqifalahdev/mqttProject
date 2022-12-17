@@ -24,10 +24,6 @@
                     text: @js($chartName)
                 },
 
-                // subtitle: {
-                //     text: 'Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>'
-                // },
-
                 yAxis: {
                     title: {
                         text: 'Values'
@@ -45,9 +41,9 @@
 
                 // Data Live berupa Object dengan atribut name dan data.
                 // Jika data tahunan berarti data harus berisi 12 
-                // Jika Chart berisi data tahunan berarti diambil data max tiap bulan 
-                // Jika Chart berisi data bulanan berarti diambil data max tiap hari 
-                // Jika Chart berisi data harian berarti diambil data max tiap berapa jam 
+                // Jika Chart berisi data tahunan berarti diambil data rata-rata tiap bulan 
+                // Jika Chart berisi data bulanan berarti diambil data rata-rata tiap hari 
+                // Jika Chart berisi data harian berarti diambil data rata-rata tiap berapa jam 
                 series: @js($data),
 
                 responsive: {
@@ -66,17 +62,6 @@
                 }
 
             });
-
-            // take emit events from global events
-            // Livewire.on('changedChart', event => {
-            //     const data = JSON.parse(event);
-            //     // Update chart depends data from the server 
-            //     chart.data.labels = data.label;
-            //     chart.data.datasets.forEach((dataset) => {
-            //         dataset.data = data.data;
-            //     });
-            //     chart.update();
-            // });
         </script>
     @endpush
 </div>

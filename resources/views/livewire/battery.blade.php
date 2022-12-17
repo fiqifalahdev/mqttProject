@@ -6,7 +6,8 @@
         <livewire:gauge :gaugeName="'batteryPower'" :data="$battPower->message" :fetchData="'changedPower'" />
         <livewire:gauge :gaugeName="'batteryEnergy'" :data="$battEnergy->message" :fetchData="'changedEnergy'" />
         <livewire:gauge :gaugeName="'batteryCurrent'" :data="$battCurrent->message" :fetchData="'changedCurrent'" />
-        {{-- <livewire:chart :chartName="'batteryCurrent'" :chartSize="'w-[80vw] h-[20vw]'" :type="'line'" :className="'mx-auto mt-10 w-[80vw]'" :data="$battCurrent" /> --}}
+
+        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-[80vw]'" :data="$chartData" />
     </div>
     @push('scripts')
         <script>
