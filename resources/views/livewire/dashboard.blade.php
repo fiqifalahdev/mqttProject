@@ -14,7 +14,7 @@
         <livewire:gauge :gaugeName="'intensity'" :data="$intensity" :fetchData="'intensity'" />
         <livewire:gauge :gaugeName="'rainfall'" :data="$rainfall" :fetchData="'rainfall'" />
         <livewire:card :header="'Wind Direction'" :values="$windPoint" :key="Str::random()" />
-        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-1/2'" :data="$chartData" />
+        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-[80vw]'" :data="$chartData" />
     </div>
 
     @push('scripts')

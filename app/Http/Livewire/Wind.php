@@ -22,32 +22,33 @@ class Wind extends Component
     {
         dispatch(new MqttJobs());
 
-        $this->windVolt = WindVolt::latest()->first();
-        $this->windEnergy = WindEnergy::latest()->first();
-        $this->windPower = WindWatt::latest()->first();
-        $this->windCurrent = WindCurrent::latest()->first();
+        $windVolt = new GetDataController();
+        $windEnergy = new GetDataController();
+        $windPower = new GetDataController();
+        $windCurrent = new GetDataController();
 
-        $windVolt = new GetDataController(WindVolt::class);
-        $windEnergy = new GetDataController(WindEnergy::class);
-        $windPower = new GetDataController(WindWatt::class);
-        $windCurrent = new GetDataController(WindCurrent::class);
+        $this->windVolt = $windVolt->getFirstData(WindVolt::class);
+        $this->windEnergy = $windEnergy->getFirstData(WindEnergy::class);
+        $this->windPower = $windPower->getFirstData(WindWatt::class);
+        $this->windCurrent = $windCurrent->getFirstData(WindCurrent::class);
+
 
         $this->chartData = [
             [
                 'name' => 'Wind Volt',
-                'data' => $windVolt->getDataYear()
+                'data' => $windVolt->getDataYear(WindVolt::class)
             ],
             [
                 'name' => 'Wind Energy',
-                'data' => $windEnergy->getDataYear()
+                'data' => $windEnergy->getDataYear(WindEnergy::class)
             ],
             [
                 'name' => 'Wind Power',
-                'data' => $windPower->getDataYear()
+                'data' => $windPower->getDataYear(WindWatt::class)
             ],
             [
                 'name' => 'Wind Current',
-                'data' => $windCurrent->getDataYear()
+                'data' => $windCurrent->getDataYear(WindCurrent::class)
             ],
         ];
     }
@@ -61,10 +62,15 @@ class Wind extends Component
     {
         dispatch(new MqttJobs());
 
-        $this->windVolt = WindVolt::latest()->first();
-        $this->windEnergy = WindEnergy::latest()->first();
-        $this->windPower = WindWatt::latest()->first();
-        $this->windCurrent = WindCurrent::latest()->first();
+        $windVolt = new GetDataController();
+        $windEnergy = new GetDataController();
+        $windPower = new GetDataController();
+        $windCurrent = new GetDataController();
+
+        $this->windVolt = $windVolt->getFirstData(WindVolt::class);
+        $this->windEnergy = $windEnergy->getFirstData(WindEnergy::class);
+        $this->windPower = $windPower->getFirstData(WindWatt::class);
+        $this->windCurrent = $windCurrent->getFirstData(WindCurrent::class);
 
         // emit to frontend
         $this->emit('changedWindVolt', $this->windVolt);

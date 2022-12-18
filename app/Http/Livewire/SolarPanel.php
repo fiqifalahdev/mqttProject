@@ -23,33 +23,33 @@ class SolarPanel extends Component
     {
         dispatch(new MqttJobs());
 
-        $pvVolt = new GetDataController(PvVoltage::class);
-        $pvEnergy = new GetDataController(PvEnergy::class);
-        $pvPower = new GetDataController(PvPower::class);
-        $pvCurrent = new GetDataController(PvCurrent::class);
+        $pvVolt = new GetDataController();
+        $pvEnergy = new GetDataController();
+        $pvPower = new GetDataController();
+        $pvCurrent = new GetDataController();
 
-        $this->pvVolt = $pvVolt->getFirstData();
-        $this->pvEnergy = $pvEnergy->getFirstData();
-        $this->pvPower = $pvPower->getFirstData();
-        $this->pvCurrent = $pvCurrent->getFirstData();
+        $this->pvVolt = $pvVolt->getFirstData(PvVoltage::class);
+        $this->pvEnergy = $pvEnergy->getFirstData(PvEnergy::class);
+        $this->pvPower = $pvPower->getFirstData(PvPower::class);
+        $this->pvCurrent = $pvCurrent->getFirstData(PvCurrent::class);
 
 
         $this->chartData = [
             [
                 'name' => 'Pv Volt',
-                'data' => $pvVolt->getDataYear()
+                'data' => $pvVolt->getDataYear(PvVoltage::class)
             ],
             [
                 'name' => 'Pv Energy',
-                'data' => $pvEnergy->getDataYear()
+                'data' => $pvEnergy->getDataYear(PvEnergy::class)
             ],
             [
                 'name' => 'Pv Power',
-                'data' => $pvPower->getDataYear()
+                'data' => $pvPower->getDataYear(PvPower::class)
             ],
             [
                 'name' => 'Pv Current',
-                'data' => $pvCurrent->getDataYear()
+                'data' => $pvCurrent->getDataYear(PvCurrent::class)
             ],
         ];
     }
@@ -63,15 +63,15 @@ class SolarPanel extends Component
     {
         dispatch(new MqttJobs());
 
-        $pvVolt = new GetDataController(PvVoltage::class);
-        $pvEnergy = new GetDataController(PvEnergy::class);
-        $pvPower = new GetDataController(PvPower::class);
-        $pvCurrent = new GetDataController(PvCurrent::class);
+        $pvVolt = new GetDataController();
+        $pvEnergy = new GetDataController();
+        $pvPower = new GetDataController();
+        $pvCurrent = new GetDataController();
 
-        $this->pvVolt = $pvVolt->getFirstData();
-        $this->pvEnergy = $pvEnergy->getFirstData();
-        $this->pvPower = $pvPower->getFirstData();
-        $this->pvCurrent = $pvCurrent->getFirstData();
+        $this->pvVolt = $pvVolt->getFirstData(PvVoltage::class);
+        $this->pvEnergy = $pvEnergy->getFirstData(PvEnergy::class);
+        $this->pvPower = $pvPower->getFirstData(PvPower::class);
+        $this->pvCurrent = $pvCurrent->getFirstData(PvCurrent::class);
 
         $this->emit('changedPvVolt', $this->pvVolt);
         $this->emit('changedPvPower', $this->pvPower);
