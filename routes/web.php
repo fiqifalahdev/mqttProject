@@ -18,20 +18,25 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/solar', function () {
-    return view('solar');
-})->middleware(['auth', 'verified'])->name('solar');
+// Middleware Grouping
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/batt', function () {
-    return view('batteries');
-})->middleware(['auth', 'verified'])->name('batt');
+    Route::get('/solar', function () {
+        return view('solar');
+    })->name('solar');
 
-Route::get('/wind', function () {
-    return view('winds');
-})->middleware(['auth', 'verified'])->name('wind');
+    Route::get('/batt', function () {
+        return view('batteries');
+    })->name('batt');
+
+    Route::get('/wind', function () {
+        return view('winds');
+    })->name('wind');
+});
+
 
 require __DIR__ . '/auth.php';

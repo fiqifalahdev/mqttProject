@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Http\Controllers\GetDataController;
 use App\Jobs\MqttJobs;
+use App\Models\BatteryOver;
 use App\Models\Humidity;
 use App\Models\Intensity;
 use App\Models\Rainfall;
@@ -28,35 +29,36 @@ class Dashboard extends Component
         dispatch(new MqttJobs());
 
         // Get Data For Gauge
-        $this->humidity = Humidity::latest()->first();
-        $this->intensity = Intensity::latest()->first();
-        $this->windSpeed = WindSpeed::latest()->first();
-        $this->rainfall = Rainfall::latest()->first();
-        $this->windPoint = WindPoint::latest()->first();
+        $humidity = new GetDataController();
+        $intensity = new GetDataController();
+        $windSpeed = new GetDataController();
+        $rainfall = new GetDataController();
+        $windPoint = new GetDataController();
 
-        $this->windPoint = $this->convertToDirection(intval($this->windPoint->message));
+        $this->humidity = $humidity->getFirstData(Humidity::class);
+        $this->intensity = $intensity->getFirstData(Intensity::class);
+        $this->windSpeed = $windSpeed->getFirstData(WindSpeed::class);;
+        $this->rainfall = $rainfall->getFirstData(Rainfall::class);;
+        $this->windPoint = $windPoint->getFirstData(WindPoint::class);
+        $this->windPoint = $this->convertToDirection(intval($this->windPoint));
+
         // Get Data for Trend Chart
-        $humidity = new GetDataController(Humidity::class);
-        $intensity = new GetDataController(Intensity::class);
-        $windSpeed = new GetDataController(WindSpeed::class);
-        $rainfall = new GetDataController(Rainfall::class);
-
         $this->chartData = [
             [
                 'name' => 'Humidity',
-                'data' => $humidity->getDataYear()
+                'data' => $humidity->getDataYear(Humidity::class)
             ],
             [
                 'name' => 'Intensity',
-                'data' => $intensity->getDataYear()
+                'data' => $intensity->getDataYear(Intensity::class)
             ],
             [
                 'name' => 'WindSpeed',
-                'data' => $windSpeed->getDataYear()
+                'data' => $windSpeed->getDataYear(WindSpeed::class)
             ],
             [
                 'name' => 'Rainfall',
-                'data' => $rainfall->getDataYear()
+                'data' => $rainfall->getDataYear(Rainfall::class)
             ],
         ];
     }
@@ -71,13 +73,18 @@ class Dashboard extends Component
     {
         dispatch(new MqttJobs());
 
-        $this->humidity = Humidity::latest()->first();
-        $this->intensity = Intensity::latest()->first();
-        $this->windSpeed = WindSpeed::latest()->first();
-        $this->windPoint = WindPoint::latest()->first();
-        $this->rainfall = Rainfall::latest()->first();
+        $humidity = new GetDataController();
+        $intensity = new GetDataController();
+        $windSpeed = new GetDataController();
+        $rainfall = new GetDataController();
+        $windPoint = new GetDataController();
 
-        $this->windPoint = $this->convertToDirection(intval($this->windPoint->message));
+        $this->humidity = $humidity->getFirstData(Humidity::class);
+        $this->intensity = $intensity->getFirstData(Intensity::class);
+        $this->windSpeed = $windSpeed->getFirstData(WindSpeed::class);;
+        $this->rainfall = $rainfall->getFirstData(Rainfall::class);;
+        $this->windPoint = $windPoint->getFirstData(WindPoint::class);
+        $this->windPoint = $this->convertToDirection(intval($this->windPoint));
         // Emit event 
         $this->emit('windSpeed', $this->windSpeed);
         $this->emit('humidity', $this->humidity);

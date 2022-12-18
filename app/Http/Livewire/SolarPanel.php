@@ -23,15 +23,16 @@ class SolarPanel extends Component
     {
         dispatch(new MqttJobs());
 
-        $this->pvVolt = PvVoltage::latest()->first();
-        $this->pvEnergy = PvEnergy::latest()->first();
-        $this->pvPower = PvPower::latest()->first();
-        $this->pvCurrent = PvCurrent::latest()->first();
-
         $pvVolt = new GetDataController(PvVoltage::class);
         $pvEnergy = new GetDataController(PvEnergy::class);
         $pvPower = new GetDataController(PvPower::class);
         $pvCurrent = new GetDataController(PvCurrent::class);
+
+        $this->pvVolt = $pvVolt->getFirstData();
+        $this->pvEnergy = $pvEnergy->getFirstData();
+        $this->pvPower = $pvPower->getFirstData();
+        $this->pvCurrent = $pvCurrent->getFirstData();
+
 
         $this->chartData = [
             [
@@ -62,17 +63,16 @@ class SolarPanel extends Component
     {
         dispatch(new MqttJobs());
 
-        $this->pvVolt = PvVoltage::latest()->first();
-        $this->pvEnergy = PvEnergy::latest()->first();
-        $this->pvPower = PvPower::latest()->first();
-        $this->pvCurrent = PvCurrent::latest()->first();
-        // $this->pvCurrent = PvCurrent::latest()->limit(10)->get();
-        // foreach ($this->pvCurrent as $value) {
-        //     $data['label'][] = $value->created_at->format("H:i:s");
-        //     $data['data'][] = $value->message;
-        // }
+        $pvVolt = new GetDataController(PvVoltage::class);
+        $pvEnergy = new GetDataController(PvEnergy::class);
+        $pvPower = new GetDataController(PvPower::class);
+        $pvCurrent = new GetDataController(PvCurrent::class);
 
-        // $this->pvCurrent = json_encode($data);
+        $this->pvVolt = $pvVolt->getFirstData();
+        $this->pvEnergy = $pvEnergy->getFirstData();
+        $this->pvPower = $pvPower->getFirstData();
+        $this->pvCurrent = $pvCurrent->getFirstData();
+
         $this->emit('changedPvVolt', $this->pvVolt);
         $this->emit('changedPvPower', $this->pvPower);
         $this->emit('changedPvEnergy', $this->pvEnergy);

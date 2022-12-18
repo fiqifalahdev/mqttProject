@@ -4,14 +4,6 @@ namespace App\Http\Controllers;
 
 class GetDataController
 {
-
-    protected $object;
-
-    public function __construct($obj)
-    {
-        $this->object = $obj;
-    }
-
     // Method untuk mendapatkan data dari database berdasarkan tahun
     // Ambil data maximal terbaru di bulan xx untuk tahun xxxx
     // Ambil Data maksimal berdasarkan bulan dan tahun
@@ -19,15 +11,30 @@ class GetDataController
     //     ->groupby('year', 'month')
     //     ->get();
     // dd($test);
-    public function getDataYear()
+    public function getDataYear($object)
     {
-        $dumms = $this->object::selectRaw("avg(message) as `data`,  year(created_at) year, month(created_at) month")
+        $datas = $object::selectRaw("avg(message) as `data`,  year(created_at) year, month(created_at) month")
             ->groupby('year', 'month')
             ->get();
-        foreach ($dumms as $dumm) {
-            $data[] = floatval($dumm->data);
+        if ($datas->isEmpty()) {
+            $data[] = floatval('0');
+            return $data;
+        }
+        foreach ($datas as $d) {
+            $data[] = floatval($d->data);
         }
 
         return $data;
+    }
+
+    // Method untuk mendapatkan data pertama dari satu table
+    public function getFirstData($object)
+    {
+        $datas = $object::latest()->first();
+        if ($datas == null) {
+            $datas = '0';
+            return $datas;
+        }
+        return $datas->message;
     }
 }

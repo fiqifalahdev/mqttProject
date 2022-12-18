@@ -9,17 +9,16 @@
             arah mata angin derajat trus nanti diconvert jadi arah 
             curah hujan bar chart
     --}}
-        <livewire:gauge :gaugeName="'windSpeed'" :data="$windSpeed->message" :fetchData="'windSpeed'" />
-        <livewire:gauge :gaugeName="'humidity'" :data="$humidity->message" :fetchData="'humidity'" />
-        <livewire:gauge :gaugeName="'intensity'" :data="$intensity->message" :fetchData="'intensity'" />
-        <livewire:gauge :gaugeName="'rainfall'" :data="$rainfall->message" :fetchData="'rainfall'" />
+        <livewire:gauge :gaugeName="'windSpeed'" :data="$windSpeed" :fetchData="'windSpeed'" />
+        <livewire:gauge :gaugeName="'humidity'" :data="$humidity" :fetchData="'humidity'" />
+        <livewire:gauge :gaugeName="'intensity'" :data="$intensity" :fetchData="'intensity'" />
+        <livewire:gauge :gaugeName="'rainfall'" :data="$rainfall" :fetchData="'rainfall'" />
         <livewire:card :header="'Wind Direction'" :values="$windPoint" :key="Str::random()" />
-        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-[80vw]'" :data="$chartData" />
+        <livewire:chart :chartName="'Trend Chart'" :className="'mx-auto mt-10 w-1/2'" :data="$chartData" />
     </div>
 
     @push('scripts')
         <script>
-            console.log(@js($windPoint));
             setInterval(() => {
                 Livewire.emit('change');
             }, 2000);

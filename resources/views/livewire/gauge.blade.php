@@ -109,7 +109,7 @@
                 }, 2000);
 
                 Livewire.on(eventName, event => {
-                    newData = parseFloat(event.message);
+                    newData = parseFloat(event);
                 });
             }
 

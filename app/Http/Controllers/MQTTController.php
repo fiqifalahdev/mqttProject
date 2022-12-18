@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\BatteryCurrent;
 use App\Models\BatteryEnergy;
+use App\Models\BatteryOver;
+use App\Models\BatterySoc;
+use App\Models\BatteryTemp;
+use App\Models\BatteryUnder;
 use App\Models\BatteryVolt;
 use App\Models\BatteryWatt;
 use App\Models\Humidity;
@@ -44,7 +48,11 @@ class MQTTController
         'PfSains/windVolt',
         'PfSains/windWatt',
         'PfSains/windCurr',
-        'PfSains/windEnergy'
+        'PfSains/windEnergy',
+        'PfSains/battOver',
+        'PfSains/battUnder',
+        'PfSains/battSOC',
+        'PfSains/battTemp',
     ];
 
     public function subscribe()
@@ -185,6 +193,30 @@ class MQTTController
                 'topic' => $topic,
                 'message' => $message,
                 'type' => 'windEnergy'
+            ]);
+        } else if ($topic == $this->topicList[17]) {
+            BatteryOver::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'battOver'
+            ]);
+        } else if ($topic == $this->topicList[18]) {
+            BatteryUnder::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'battUnder'
+            ]);
+        } else if ($topic == $this->topicList[19]) {
+            BatterySoc::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'battSOC'
+            ]);
+        } else if ($topic == $this->topicList[20]) {
+            BatteryTemp::create([
+                'topic' => $topic,
+                'message' => $message,
+                'type' => 'battTemp'
             ]);
         }
     }
